@@ -2,6 +2,8 @@
 const MAX_NUMBER = 100
 const MIN_NUMBER = 0
 
+let guessCount = 0
+
 let newMaxNumber = 100
 
 let newLowNumber = 0
@@ -15,6 +17,7 @@ document.getElementById('too-high-btn').addEventListener('click', function () {
     newMaxNumber = guess
     guess = lowMiddleNumber(newLowNumber, guess)
     setMessage(`Is it ${guess}?`)
+    setCounter()
 })
 
 document.getElementById('is-correct-btn').addEventListener('click', function () {
@@ -28,12 +31,11 @@ document.getElementById('too-low-btn').addEventListener('click', function () {
     newLowNumber = guess
     guess = highMiddleNumber(newMaxNumber, guess)    //Medelvärde
     setMessage(`Is it ${guess}?`)
-
+    setCounter()
 })
 
 
 function setMessage(msg) {
-    console.log("Nu är vi i setMessage")
     document.getElementById('message').innerText = msg
 }
 
@@ -57,19 +59,19 @@ function makeGuess(){
 }
 
 function highMiddleNumber(max, highGuess){
-    console.log("high")
     highGuess = (max + guess)/2
     console.log(guess)
     return Math.round(highGuess)
 }
 
 function lowMiddleNumber(min, lowGuess){
-    console.log("low")
     lowGuess = (min + guess)/2
     console.log(guess)
     return Math.round(lowGuess)
 }
 
 function setCounter() {
-    
+    guessCount++
+    console.log(guessCount)
+    document.getElementById('counter').innerText = `Guess counter: ${guessCount}`
 }
